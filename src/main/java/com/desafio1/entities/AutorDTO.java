@@ -12,11 +12,11 @@ public class AutorDTO {
 
     private Instant instante = Instant.now();
     private Long id;
-    @NotEmpty
+    @NotEmpty(message = "O campo 'nome' nao pode ficar em branco ou nulo.")
     private String nome;
-    @Email
+    @Email(message = "O campo 'e-mail' deve ser preenchido com um e-mail valido.")
     private String email;
-    @NotEmpty
+    @NotEmpty(message = "O campo 'descricao' nao pode ficar em branco ou nulo, e deve conter no maximo 400 caracteres.")
     @Size(min = 1, max = 400)
     private String descricao;
 
