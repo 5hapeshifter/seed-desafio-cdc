@@ -7,19 +7,19 @@ import java.time.Instant;
 @Table(name = "autor")
 public class Autor {
 
-    private Instant instante;
+    private final Instant instante = Instant.now();;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    // @Column(unique = true) Poderia ser usado para validar, mas foi implementado um validador na mao de exemplo
     private String email;
     private String descricao;
 
     public Autor() {
     }
 
-    public Autor(Instant instante, Long id, String nome, String email, String descricao) {
-        this.instante = instante;
+    public Autor(Long id, String nome, String email, String descricao) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -30,12 +30,12 @@ public class Autor {
         return instante;
     }
 
-    public void setInstante(Instant instante) {
-        this.instante = instante;
-    }
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -62,4 +62,14 @@ public class Autor {
         this.descricao = descricao;
     }
 
+    @Override
+    public String toString() {
+        return "Autor{" +
+                "instante=" + instante +
+                ", id=" + id +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", descricao='" + descricao + '\'' +
+                '}';
+    }
 }

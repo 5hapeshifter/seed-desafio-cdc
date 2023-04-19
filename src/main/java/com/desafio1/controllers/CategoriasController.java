@@ -1,7 +1,7 @@
 package com.desafio1.controllers;
 
-import com.desafio1.entities.Autor;
-import com.desafio1.entities.AutorDTO;
+import com.desafio1.entities.Categoria;
+import com.desafio1.entities.CategoriaDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,19 +14,19 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/autores")
-public class AutoresController {
+@RequestMapping(path = "/categorias")
+public class CategoriasController {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @PostMapping
     @Transactional
-    public ResponseEntity<AutorDTO> criar(@RequestBody @Valid AutorDTO autorDTO) {
-        Autor autor = autorDTO.createAutorWhithoutId();
-        entityManager.persist(autor);
-        return ResponseEntity.ok(autorDTO);
-    }
+    public ResponseEntity<CategoriaDto> criar(@RequestBody @Valid CategoriaDto categoriaDto) {
 
+        Categoria categoria = categoriaDto.createCategoria();
+        entityManager.persist(categoria);
+        return ResponseEntity.ok(categoriaDto);
+    }
 
 }
